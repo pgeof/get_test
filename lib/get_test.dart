@@ -4,8 +4,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:get/get.dart';
 import 'package:meta/meta.dart';
 
-import 'utils/image_test.dart'
-    if (dart.library.io) 'utils/image_test_utils.dart';
+import 'utils/image_test.dart' if (dart.library.io) 'utils/image_test_utils.dart';
 
 class _Wrapper extends StatelessWidget {
   final Widget child;
@@ -55,7 +54,7 @@ Future<T> testGetX<T extends DisposableInterface>(
 }) async {
   T? controller;
   testWidgets(description, (tester) async {
-    provideMockedNetworkImages(() async {
+    mockNetworkImagesFor(() async {
       await tester.pumpWidget(GetMaterialApp(home: widget));
       final controller = Get.find<T>();
       test(controller);
@@ -72,7 +71,7 @@ Future<T> testGetBuilder<T extends GetxController>(
 }) async {
   T? controller;
   testWidgets(description, (tester) async {
-    provideMockedNetworkImages(() async {
+    mockNetworkImagesFor(() async {
       await tester.pumpWidget(GetMaterialApp(home: widget));
       final controller = Get.find<T>();
       test(controller);
@@ -89,7 +88,7 @@ Future<T> testObx<T extends GetxController>(
   required void Function(T controller) test,
 }) async {
   testWidgets(description, (tester) async {
-    provideMockedNetworkImages(() async {
+    mockNetworkImagesFor(() async {
       await tester.pumpWidget(GetMaterialApp(home: widget(controller)));
       test(controller);
     });
@@ -126,7 +125,7 @@ void getTest(
   testWidgets(
     description,
     (tester) async {
-      provideMockedNetworkImages(() async {
+      mockNetworkImagesFor(() async {
         await tester.pumpWidget(wrapper!);
         widgetTest(tester);
       });

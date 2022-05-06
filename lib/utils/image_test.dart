@@ -1,3 +1,3 @@
-R provideMockedNetworkImages<R>(R body()) {
+R mockNetworkImagesFor<R>(R body()) {
   return body();
 }
